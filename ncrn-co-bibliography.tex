@@ -2,6 +2,11 @@
 
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{etoolbox}
+% ======== SET THIS FLAG to indicate whether to use a local or remote bib file
+\newtoggle{local}
+\togglefalse{local}
+%\toggletrue{local}
 
 \usepackage[%
 plainpages,%
@@ -15,14 +20,18 @@ pdfsubject={Bibliography},%
 \usepackage[citestyle=authoryear,maxnames=10,backend=biber]{biblatex}
 
 \nocite{*}
-\title{Biblatex tests}
 \author{lars.vilhuber }
-\date{February 2014}
+\date{\today}
 
 
-
-\addbibresource[location=remote]{https://www.ncrn.info/documents/bibliographies/export/bibtex}
-%\addbibresource{Biblio-Bibtex.bib}
+\iftoggle{local}{
+	\addbibresource{Biblio-Bibtex.bib}
+	\title{NCRN global Bibliography [local]}
+}%else
+{
+	\addbibresource[location=remote]{https://www.ncrn.info/documents/bibliographies/export/bibtex}
+	\title{NCRN global Bibliography}
+}
 
 \begin{document}
 \maketitle
@@ -35,7 +44,9 @@ This bibliography is generated for the NSF-Census Research Network (NCRN) from d
 \newpage
 \begin{quote}
 	\footnotesize
-This bibliography can be easily recreated by cloning our git repository at \url{https://github.com/labordynamicsinstitute/ncrncobib}. The bibliographic database is downloaded directly from \url{https://www.ncrn.info/documents/bibliographies/export/bibtex} during the compilation, the document is thus always current when compiled.
+This bibliography can be easily recreated by cloning our git repository at \url{https://github.com/labordynamicsinstitute/ncrncobib}.
+\iftoggle{local}{This version was created from the BIB file in the repository as of \today. A flag can be set in the preamble of this TEX file to download a remote copy from}{The bibliographic database was downloaded on \today directly from} \url{https://www.ncrn.info/documents/bibliographies/export/bibtex}.
+\iftoggle{local}{}{A flag can be set in the preamble of this TEX file to use the local checked out version in the git repository.}
 
 
 \end{quote}
