@@ -1,2 +1,4 @@
 #!/bin/bash
-curl https://www.ncrn.info/documents/bibliographies/export/bibtex > Biblio-Bibtex.bib
+# % old; https://www.ncrn.info/documents/bibliographies/export/bibtex
+URL=https://www.ncrn.info/documents/bibliographies/export/Biblio-Bibtex/index.bib
+curl "$URL" > Biblio-Bibtex.bib

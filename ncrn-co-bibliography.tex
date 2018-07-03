@@ -2,11 +2,14 @@
 
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage[greek,english]{babel}
+\usepackage{CJKutf8}
+
 \usepackage{etoolbox}
 % ======== SET THIS FLAG to indicate whether to use a local or remote bib file
 \newtoggle{local}
-\togglefalse{local}
-%\toggletrue{local}
+%\togglefalse{local}
+\toggletrue{local}
 
 \usepackage[%
 plainpages,%
@@ -29,7 +32,9 @@ pdfsubject={Bibliography},%
 	\title{NCRN global Bibliography [local]}
 }%else
 {
-	\addbibresource[location=remote]{https://www.ncrn.info/documents/bibliographies/export/bibtex}
+% old; https://www.ncrn.info/documents/bibliographies/export/bibtex
+% new: https://www.ncrn.info/documents/bibliographies/export/Biblio-Bibtex/index.bib
+ \addbibresource[location=remote]{https://www.ncrn.info/documents/bibliographies/export/Biblio-Bibtex/index.bib}
 	\title{NCRN global Bibliography}
 }
 
@@ -45,8 +50,8 @@ This bibliography is generated for the NSF-Census Research Network (NCRN) from d
 \begin{quote}
 	\footnotesize
 This bibliography can be easily recreated by cloning our git repository at \url{https://github.com/labordynamicsinstitute/ncrncobib}.
-\iftoggle{local}{This version was created from the BIB file in the repository as of \today. A flag can be set in the preamble of this TEX file to download a remote copy from}{The bibliographic database was downloaded on \today directly from} \url{https://www.ncrn.info/documents/bibliographies/export/bibtex}.
-\iftoggle{local}{}{A flag can be set in the preamble of this TEX file to use the local checked out version in the git repository.}
+\iftoggle{local}{This version was created from the BIB file in the repository as of \today. A flag can be set in the preamble of this TEX file to download a remote copy from}{The bibliographic database was downloaded on \today directly from} \url{https://www.ncrn.info/documents/bibliographies/export/Biblio-Bibtex/index.bib}.
+\iftoggle{local}{}{A flag can be set in the preamble of this TEX file to use the local checked out version in the git repository, though this is not guaranteed to work. Due to various complex characters in the bibliography database, it may be necessary to do the \LaTeX \  compilation from a command line.}
 
 
 \end{quote}
